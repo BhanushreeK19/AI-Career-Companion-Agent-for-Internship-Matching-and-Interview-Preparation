@@ -1,0 +1,70 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+backend/venv/
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Node / Frontend
+# =========================
+node_modules/
+frontend/node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# =========================
+# Uploaded / User-generated files
+# =========================
+backend/uploads/
+backend/profile_photos/
+
+uploads/
+profile_photos/
+
+# =========================
+# Database / Local runtime
+# =========================
+*.db
+*.sqlite
+*.sqlite3
+
+# =========================
+# Generated / Temporary files
+# =========================
+*.log
+*.tmp
+*.temp
+
+# =========================
+# ZIP / archive files
+# =========================
+*.zip
+
+# =========================
+# IDE / OS
+# =========================
+.vscode/
+.idea/
+*.code-workspace
+
+.DS_Store
+Thumbs.db
+desktop.ini
