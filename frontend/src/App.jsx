@@ -29,7 +29,7 @@ function Shell({ user, onLogout, children }) {
 
   const links = [
     { to: "/dashboard", label: "Dashboard", icon: "⌂" },
-    { to: "/resume", label: "Resume", icon: "▣" },
+    { to: "/resume", label: "Resume Parsing", icon: "▣" },
     { to: "/parsed-resumes", label: "Parsed Resumes", icon: "☰" },
     { to: "/internships", label: "Internships", icon: "◈" },
     { to: "/matches", label: "My Matches", icon: "✦" },
@@ -138,7 +138,7 @@ function AuthLayout({ children }) {
           <h1>Find internships that match <em>you.</em></h1>
           <p>Turn your resume into personalized internship recommendations using semantic search, vector retrieval and AI.</p>
           <div className="flow">
-            <span>Resume</span><i>→</i><span>AI Parsing</span><i>→</i><span>RAG Matching</span>
+            <span>Resume Parsing</span><i>→</i><span>Internship Matching</span><i>→</i><span>Interview Preparation</span>
           </div>
         </div>
         <div className="auth-foot">Built with FastAPI · PostgreSQL · FAISS · Hugging Face · Groq</div>
