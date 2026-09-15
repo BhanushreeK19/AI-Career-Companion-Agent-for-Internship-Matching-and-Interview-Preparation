@@ -200,7 +200,7 @@ function Login({ onLogin }) {
   );
 }
 
-function Register({ onLogin }) {
+function Register() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ full_name: "", email: "", password: "", phone_number: "" });
   const [error, setError] = useState("");
@@ -216,12 +216,7 @@ function Register({ onLogin }) {
     setLoading(true);
     try {
       await api.register(form);
-      const token = await api.login(form.email, form.password);
-      setToken(token.access_token);
-      const user = await api.getProfile();
-      saveUser(user);
-      onLogin(user);
-      navigate("/dashboard", { replace: true });
+      navigate("/login", { replace: true });
     } catch (err) {
       setError(err.message);
     } finally {
@@ -628,7 +623,7 @@ function AppliedInternshipsPage() {
 function MatchesPage({ resume }) {
   const [matches, setMatches] = useState([]);
   const [summary, setSummary] = useState("");
-  const [k, setK] = useState(5);
+  const [k, setK] = useState(3);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [appliedIds, setAppliedIds] = useState(new Set());
@@ -650,9 +645,8 @@ function MatchesPage({ resume }) {
   }
 
   useEffect(() => {
-    if (resume?.resume_id) loadMatches();
     api.getAppliedInternships().then((rows) => setAppliedIds(new Set(rows.map((r) => r.internship_id)))).catch(() => {});
-  }, [resume?.resume_id]);
+  }, []);
 
   if (!resume?.resume_id) {
     return (
@@ -666,7 +660,14 @@ function MatchesPage({ resume }) {
       <div className="match-toolbar">
         <div><span className="eyebrow">MATCH COUNT</span><strong>Top {k}</strong></div>
         <select value={k} onChange={(e) => setK(Number(e.target.value))}><option value="3">3 matches</option><option value="5">5 matches</option><option value="10">10 matches</option></select>
-        <button className="secondary-button" onClick={loadMatches} disabled={loading}>{loading ? "Analyzing..." : "Refresh matches"}</button>
+        <button
+          className="primary-button"
+          onClick={loadMatches}
+          disabled={loading}
+        >
+          {loading ? "Finding matches..." : "Find Matches →"}
+        </button>
+
       </div>
       {error && <FormMessage error={error} />}
       {loading ? <LoadingState text="Searching the internship vector database..." /> : (
@@ -755,7 +756,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/login" element={user ? <Navigate to="/dashboard" replace /> : <Login onLogin={onLogin} />} />
-      <Route path="/register" element={user ? <Navigate to="/dashboard" replace /> : <Register onLogin={onLogin} />} />
+      <Route path="/register" element={user ? <Navigate to="/dashboard" replace /> : <Register />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
 
