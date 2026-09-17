@@ -680,11 +680,5 @@ New frontend: `frontend/src/InterviewPrep.jsx` (dedicated workspace with a resum
 
 No new environment variables, no new Python packages, and no new frontend packages were required — the feature reuses the existing `GROQ_API_KEY` / `GROQ_MODEL`, the existing PDF/DOCX extractors, and the existing chat UI patterns/CSS.
 
-## 13. What Was Deliberately Left Unchanged
 
-- The existing technology stack (React/Vite, FastAPI, SQLAlchemy, Groq, FAISS).
-- The existing internship-matching FAISS index and its build process (`python -m app.services.internship_index`) — a **separate** index/directory is used for the chatbot so the two can never corrupt each other.
-- Existing authentication, resume upload/parsing, internship listing, cover-letter generation, and profile-photo cropping.
-- The existing floating "AI Assistant" product chatbot (`ChatAssistant.jsx`, `/chat/*`) — kept exactly as it was; the new Interview Preparation Agent is fully separate from it.
-- The overall dark visual design (now the default theme, pixel-preserved).
 
